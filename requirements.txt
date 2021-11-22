@@ -1,2 +1,2 @@
-mebots==0.3.0
+mebots==0.3.1
 yaledining==2.0.0
