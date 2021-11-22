@@ -14,22 +14,23 @@ dining = yaledining.API()
 def serving_tenders():
     for hall in dining.halls():
         for meal in hall.meals(date=datetime.date.today()):
-            print(meal.id)
+            for item in meal.items:
+                if 'chicken tenders' in item.name.lower():
+                    return True
+    return False
 
 
-def process(message):
-    bot_ids = [instance.id for instance in bot.instances()]
-
-
-
-def send(text, group_id):
+def send(text, bot_id):
     url  = 'https://api.groupme.com/v3/bots/post'
 
     message = {
-        'bot_id': bot.instance(group_id).id,
+        'bot_id': bot_id,
         'text': text,
     }
     r = requests.post(url, json=message)
 
 
-print(serving_tenders())
+if not serving_tenders():
+    bot_ids = [instance.id for instance in bot.instances()]
+    for bot_id in bot_ids:
+        send('It is chicken tenders day today.', bot_id)
