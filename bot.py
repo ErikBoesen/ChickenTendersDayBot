@@ -30,7 +30,7 @@ def send(text, bot_id):
     r = requests.post(url, json=message)
 
 
-if not serving_tenders():
+if serving_tenders():
     bot_ids = [instance.id for instance in bot.instances()]
     for bot_id in bot_ids:
         send('It is chicken tenders day today.', bot_id)
