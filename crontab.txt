@@ -1,1 +1,2 @@
+# Running on swan zoo node
 0 8 * * * cd ~/ChickenTendersDayBot && python3 bot.py
